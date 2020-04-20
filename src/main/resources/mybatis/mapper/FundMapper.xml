@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.allen.multidatasource.fund.dao.FundMapper">
+
+    <resultMap id="fundMap" type="Fund">
+        <id property="fundCode" jdbcType="VARCHAR" javaType="String" column="fund_code"/>
+        <result property="fundName" jdbcType="VARCHAR" javaType="String" column="fund_name"/>
+    </resultMap>
+
+    <insert id="add" parameterType="cn.allen.multidatasource.fund.entity.Fund">
+        insert into fund(fund_code,fund_name) values (#{fundCode},#{fundName})
+    </insert>
+    <delete id="delete" parameterType="java.lang.String">
+        delete from fund where fund_code = #{fundCode}
+    </delete>
+    <update id="update" parameterType="cn.allen.multidatasource.fund.entity.Fund">
+        update fund set fund_name = #{fundName} where fund_code = #{fundCode}
+    </update>
+    <select id="get" parameterType="java.lang.String" resultMap="fundMap">
+        select * from fund where fund_code = #{fundCode}
+    </select>
+
+</mapper>

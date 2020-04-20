@@ -1,0 +1,33 @@
+server:
+  port: 8044
+  servlet:
+    context-path: /fund-service
+  tomcat:
+    uri-encoding: UTF-8
+
+spring:
+  application:
+    name: fund-service
+  http:
+    encoding:
+      force: true
+      charset: UTF-8
+      enabled: true
+  datasource:
+    druid:
+      driver-class-name: org.h2.Driver
+#      url: jdbc:h2:mem:test;DATABASE_TO_UPPER=FALSE;INIT=CREATE SCHEMA IF NOT EXISTS PUBLIC
+      url: jdbc:h2:/Users/allen/studyspace/projects/multidatasource/src/main/resources/fund
+      username: sa
+      password: sa
+      max-active: 8
+      min-idle: 2
+      test-while-idle: true
+      time-between-eviction-runs-millis: 900000
+      validation-query: select 1 from dual
+
+mybatis:
+  mapper-locations: classpath:mybatis/mapper/*.xml
+  type-aliases-package: cn.allen.multidatasource.fund.entity
+  configuration:
+    map-underscore-to-camel-case: true

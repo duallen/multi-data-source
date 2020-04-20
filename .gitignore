@@ -31,3 +31,6 @@ build/
 .vscode/
 
 .mvn
+
+fund.mv.db
+fund.trace.db
