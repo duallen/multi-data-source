@@ -1,5 +1,7 @@
 package cn.allen.multidatasource.fund.entity;
 
+import cn.allen.multidatasource.mdscomponent.dynamicdatasource.MultiDataSourceHolder;
+
 /**
  * @author allen
  * @date 2020-04-20
@@ -8,7 +10,7 @@ public class BaseDomain {
     private String tableSuffix;
 
     public String getTableSuffix(){
-        // todo: 构造后缀
+        this.tableSuffix = MultiDataSourceHolder.getTableIndex();
         return tableSuffix;
     }
 
