@@ -2,6 +2,7 @@ package cn.allen.multidatasource.fund.controller;
 
 import cn.allen.multidatasource.fund.entity.Fund;
 import cn.allen.multidatasource.fund.service.FundService;
+import cn.allen.multidatasource.mdscomponent.annotation.Router;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,6 +17,7 @@ public class FundController {
     private FundService fundService;
 
     @PostMapping
+    @Router
     public String add(@RequestBody Fund fund){
         fundService.add(fund);
         return "created";

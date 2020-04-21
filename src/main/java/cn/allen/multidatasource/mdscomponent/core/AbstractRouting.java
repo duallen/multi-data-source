@@ -8,7 +8,6 @@ import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
 
 /**
  * 路由规则抽象类
@@ -16,7 +15,6 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
  * @date 2020-04-21
  */
 @Slf4j
-@EnableConfigurationProperties(value = {DsRoutingSetProperties.class})
 @Data
 public abstract class AbstractRouting implements Routing, InitializingBean {
 
@@ -45,10 +43,10 @@ public abstract class AbstractRouting implements Routing, InitializingBean {
                 checkRoutingDsTableStrategyConfig();
                 break;
             case RoutingConstant.ROUTING_DS_STRATEGY:
-                checkRoutingDsStategyConfig();
+                checkRoutingDsStrategyConfig();
                 break;
             case RoutingConstant.ROUTING_TABLE_STRATEGY:
-                checkRoutingTableStategyConfig();
+                checkRoutingTableStrategyConfig();
                 break;
         }
     }
@@ -68,7 +66,7 @@ public abstract class AbstractRouting implements Routing, InitializingBean {
     /**
      * 检查多库一表的路由配置项
      */
-    private void checkRoutingDsStategyConfig() {
+    private void checkRoutingDsStrategyConfig() {
         if(dsRoutingSetProperties.getTableNum()!=1 ||dsRoutingSetProperties.getDataSourceNum()<=1){
             log.error("你的配置项routingStrategy:{}是多库一表配置,数据库个数>1," +
                             "每一个库中表的个数必须=1,您的配置:数据库个数:{},表的个数:{}",dsRoutingSetProperties.getRoutingStrategy(),
@@ -80,7 +78,7 @@ public abstract class AbstractRouting implements Routing, InitializingBean {
     /**
      * 检查一库多表的路由配置项
      */
-    private void checkRoutingTableStategyConfig() {
+    private void checkRoutingTableStrategyConfig() {
         if(dsRoutingSetProperties.getTableNum()<=1 ||dsRoutingSetProperties.getDataSourceNum()!=1){
             log.error("你的配置项routingStrategy:{}是一库多表配置,数据库个数=1," +
                             "每一个库中表的个数必须>1,您的配置:数据库个数:{},表的个数:{}",dsRoutingSetProperties.getRoutingStrategy(),

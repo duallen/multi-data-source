@@ -14,16 +14,21 @@ spring:
       charset: UTF-8
       enabled: true
   datasource:
-    druid:
-      driver-class-name: org.h2.Driver
-      url: jdbc:h2:/Users/allen/studyspace/projects/multidatasource/src/main/resources/fund
-      username: sa
-      password: sa
-      max-active: 8
-      min-idle: 2
-      test-while-idle: true
-      time-between-eviction-runs-millis: 900000
-      validation-query: select 1 from dual
+    durid00username: sa
+    durid00password: sa
+    druid00jdbcUrl: jdbc:h2:/Users/allen/studyspace/projects/multidatasource/src/main/resources/fund;USER=sa;PASSWORD=sa;
+    durid00driverClass: org.h2.Driver
+
+    durid01username: sa
+    durid01password: sa
+    druid01jdbcUrl: jdbc:h2:/Users/allen/studyspace/projects/multidatasource/src/main/resources/fund;USER=sa;PASSWORD=sa;
+    durid01driverClass: org.h2.Driver
+
+    durid02username: sa
+    durid02password: sa
+    druid02jdbcUrl: jdbc:h2:/Users/allen/studyspace/projects/multidatasource/src/main/resources/fund;USER=sa;PASSWORD=sa;
+    durid02driverClass: org.h2.Driver
+
 
 mybatis:
   mapper-locations: classpath:mybatis/mapper/*.xml
@@ -32,3 +37,11 @@ mybatis:
     map-underscore-to-camel-case: true
 
 
+allen:
+  dsroutingset:
+    dataSourceNum: 3
+    tableNum: 4
+    routingField: "fundCode"
+    tableSuffixStyle: "%04d"
+    tableSuffixConnect: "_"
+    routingStrategy: "ROUTING_DS_TABLE_STRATEGY"
